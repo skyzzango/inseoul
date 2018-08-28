@@ -1,0 +1,22 @@
+<% include partials/layout1.ejs %>
+<div class="container">
+
+
+    <div class="starter-template">
+        <div class="card" style="width: 20rem;">
+            <form action="/login" method="post">
+                <div class="card-body">
+                    <h4 class="card-title" style="text-align: center;">로그인</h4>
+                    <p class="card-text">아이디</p>
+                    <input type="text" name="user_id" id="user_id" class="form-control" placeholder="id"><br>
+                    <p class="card-text">비밀번호</p>
+                    <input type="password" class="form-control" name="user_pw" id="user_pw" placeholder="password"><br>
+                    <input type="submit" class="btn btn-primary" value="로그인">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+<% include partials/layout2.ejs %>
