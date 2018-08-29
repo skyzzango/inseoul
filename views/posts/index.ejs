@@ -1,11 +1,11 @@
 <% include ../partials/layout1.ejs %>
 
 <div class="container post post-index">
-    <% include ./partials/header.ejs %>
+    <% include ./partials/header %>
 
     <div class="buttons">
-        <% if(isAuthenticated){ %> <!-- 1 -->
-        <a class="btn btn-default" href="/posts/new">New</a>
+        <% if(isAuthenticated){ %>
+            <a class="btn btn-default" href="/posts/new">New</a>
         <% } %>
     </div>
 
@@ -13,7 +13,7 @@
         <thead>
         <tr>
             <th class="title">Title</th>
-            <th class="author">Author</th> <!-- 1 -->
+            <th class="author">Author</th>
             <th class="date">Date</th>
         </tr>
         </thead>
@@ -28,10 +28,10 @@
                 <td class="title">
                     <a href="/posts/<%= post._id %>">
                         <div class="ellipsis"><%= post.title %></div>
-                    </a> <!-- 3 -->
+                    </a>
                 </td>
-                <td class="author"> <!-- 2 -->
-                    <div class="ellipsis"><%= post.author ? post.author.username : "" %></div> <!-- 3 -->
+                <td class="author">
+                    <div class="ellipsis"><%= post.author ? post.author.username : "" %></div>
                 </td>
                 <td class="date">
                     <%= post.createdDate %>
@@ -40,6 +40,7 @@
         <% }) %>
         </tbody>
     </table>
+
 </div>  <!-- container end -->
 
 <% include ../partials/layout2.ejs %>

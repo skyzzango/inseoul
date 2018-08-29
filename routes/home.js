@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
 	res.render('home/index');
 });
 
-// Login // 2
+// Login
 router.get("/login", function (req, res) {
 	const username = req.flash("username")[0];
 	const errors = req.flash("errors")[0] || {};
@@ -18,11 +18,12 @@ router.get("/login", function (req, res) {
 	});
 });
 
-// Post Login // 3
+// Post Login
 router.post("/login",
 	function (req, res, next) {
 		const errors = {};
 		let isValid = true;
+
 		if (!req.body.username) {
 			isValid = false;
 			errors.username = "Username is required!";
@@ -40,12 +41,12 @@ router.post("/login",
 		}
 	},
 	passport.authenticate("local-login", {
-			successRedirect: "/",
+			successRedirect: "/posts",
 			failureRedirect: "/login"
 		}
 	));
 
-// Logout // 4
+// Logout
 router.get("/logout", function (req, res) {
 	req.logout();
 	res.redirect("/");

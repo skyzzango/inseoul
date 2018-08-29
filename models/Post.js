@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
-const util = require("../util"); // 1
+const util = require("../util");
 
 // schema
 const postSchema = mongoose.Schema({
-	title: {type: String, required: [true, "Title is required!"]},
-	body: {type: String, required: [true, "Body is required!"]},
-	author: {type: mongoose.Schema.Types.ObjectId, ref: "user", required: true}, //1
+	title    : {type: String, required: [true, "Title is required!"]},
+	body     : {type: String, required: [true, "Body is required!"]},
+	author   : {type: mongoose.Schema.Types.ObjectId, ref: "user", required: true},
 	createdAt: {type: Date, default: Date.now},
 	updatedAt: {type: Date},
 }, {
@@ -15,22 +15,22 @@ const postSchema = mongoose.Schema({
 // virtuals
 postSchema.virtual("createdDate")
 	.get(function () {
-		return util.getDate(this.createdAt); // 1
+		return util.getDate(this.createdAt);
 	});
 
 postSchema.virtual("createdTime")
 	.get(function () {
-		return util.getTime(this.createdAt); // 1
+		return util.getTime(this.createdAt);
 	});
 
 postSchema.virtual("updatedDate")
 	.get(function () {
-		return util.getDate(this.updatedAt); // 1
+		return util.getDate(this.updatedAt);
 	});
 
 postSchema.virtual("updatedTime")
 	.get(function () {
-		return util.getTime(this.updatedAt); // 1
+		return util.getTime(this.updatedAt);
 	});
 
 // model & export

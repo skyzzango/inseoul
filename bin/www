@@ -33,7 +33,8 @@ server.on('listening', onListening);
 /**
  * DB setting
  */
-
+mongoose.connect('mongodb://trycatch:itbank1104@ds018498.mlab.com:18498/trycatch', {useNewUrlParser: true});
+mongoose.set('useCreateIndexes', true);
 const mongo = mongoose.connection;
 mongo.on('error', error => {
 	debug('mongo: ' + error.name)

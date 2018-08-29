@@ -3,8 +3,8 @@ const router = express.Router();
 const User = require("../models/User");
 const util = require("../util");
 
-// Index // 1
-router.get("/", util.isLoggedin, function (req, res) { // 1
+// Index
+router.get("/", util.isLoggedin, function (req, res) {
 	User.find({})
 		.sort({username: 1})
 		.exec(function (err, users) {
@@ -13,7 +13,7 @@ router.get("/", util.isLoggedin, function (req, res) { // 1
 		});
 });
 
-// New // 1
+// New
 router.get("/new", function (req, res) {
 	const user = req.flash("user")[0] || {};
 	const errors = req.flash("errors")[0] || {};
@@ -25,7 +25,7 @@ router.post("/", function (req, res) {
 	User.create(req.body, function (err, user) {
 		if (err) {
 			req.flash("user", req.body);
-			req.flash("errors", util.parseError(err)); // 1
+			req.flash("errors", util.parseError(err));
 			return res.redirect("/users/new");
 		}
 		res.redirect("/users");
@@ -33,7 +33,7 @@ router.post("/", function (req, res) {
 });
 
 // show
-router.get("/:username", util.isLoggedin, function (req, res) { // 1
+router.get("/:username", util.isLoggedin, function (req, res) {
 	User.findOne({username: req.params.username}, function (err, user) {
 		if (err) return res.json(err);
 		res.render("users/show", {user: user});
@@ -41,7 +41,7 @@ router.get("/:username", util.isLoggedin, function (req, res) { // 1
 });
 
 // edit
-router.get("/:username/edit", util.isLoggedin, checkPermission, function (req, res) { // 1, 3
+router.get("/:username/edit", util.isLoggedin, checkPermission, function (req, res) {
 	const user = req.flash("user")[0];
 	const errors = req.flash("errors")[0] || {};
 	if (!user) {
@@ -55,29 +55,34 @@ router.get("/:username/edit", util.isLoggedin, checkPermission, function (req, r
 });
 
 // update
-router.put("/:username", util.isLoggedin, checkPermission, function (req, res, next) { // 1, 3
+router.put("/:username", util.isLoggedin, checkPermission, function (req, res, next) {
 	User.findOne({username: req.params.username})
 		.select({password: 1})
 		.exec(function (err, user) {
 			if (err) return res.json(err);
 
-			// update user object ...
+			// update user object
+			user.originalPassword = user.password;
+			user.password = req.body.newPassword ? req.body.newPassword : user.password;
+			for (const p in req.body) {
+				user[p] = req.body[p];
+			}
 
 			// save updated user
 			user.save(function (err, user) {
 				if (err) {
 					req.flash("user", req.body);
-					req.flash("errors", util.parseError(err)); // 1
+					req.flash("errors", util.parseError(err));
 					return res.redirect("/users/" + req.params.username + "/edit");
 				}
-				res.redirect("/users/" + req.params.username);
+				res.redirect("/users/" + user.username);
 			});
 		});
 });
 
 module.exports = router;
 
-// private functions // 2
+// private functions
 function checkPermission(req, res, next) {
 	User.findOne({username: req.params.username}, function (err, user) {
 		if (err) return res.json(err);
