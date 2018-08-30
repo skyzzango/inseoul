@@ -26,10 +26,14 @@
         <ul class="nav navbar-nav navbar-right">
             <% if(isAuthenticated){ %>
                 <li><a href="/users/<%= currentUser.username %>">My Account</a></li>
+                <div style="margin-left: 1rem;"></div>
                 <li><a href="/logout">Logout</a></li>
+                <div style="margin-left: 1rem;"></div>
             <% } else { %>
                 <li><a href="/users/new">Sign Up</a></li>
+                <div style="margin-left: 1rem;"></div>
                 <li><a href="/login">Login</a></li>
+                <div style="margin-left: 1rem;"></div>
             <% } %>
         </ul>
         <form class="form-inline my-2 my-lg-0">

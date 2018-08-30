@@ -91,14 +91,14 @@ form .form-group {
 
 .home-login {
 	max-width: 330px;
-	font-family: 'Jua', sans-serif;
+	/*font-family: 'Jua', sans-serif;*/
 	font-size: 12px;
 }
 
 /* post style */
 .post {
 	max-width: 670px;
-	font-family: 'Jua', sans-serif;
+	/*font-family: 'Jua', sans-serif;*/
 	font-size: 12px;
 }
 
@@ -187,7 +187,7 @@ form .form-group {
 /* user style */
 .user {
 	max-width: 320px;
-	font-family: 'Jua', sans-serif;
+	/*font-family: 'Jua', sans-serif;*/
 	font-size: 12px;
 }
 
