@@ -1,8 +1,4 @@
 /* global style */
-body {
-	font-family: 'Jua', sans-serif;
-}
-
 form label {
 	padding: 3px;
 	margin-bottom: 0;
@@ -21,12 +17,20 @@ form .form-control {
 
 form fieldset {
 	margin: 7px 0 1px;
-	padding: 0 15px;
+	padding: 0px 15px;
 }
 
 form .form-group {
 	margin: 0;
 	padding-bottom: 6px;
+}
+
+.ellipsis {
+	display: block;
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .form-horizontal .control-label {
@@ -80,20 +84,12 @@ form .form-group {
 	padding: 6px 15px;
 }
 
-.ellipsis { /* 1 */
-	display: block;
-	width: 100%;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
 /* home style */
 .home h1 {
 	color: darkseagreen;
 }
 
-.home-login { /* 1 */
+.home-login {
 	max-width: 330px;
 	font-family: 'Jua', sans-serif;
 	font-size: 12px;
@@ -104,12 +100,6 @@ form .form-group {
 	max-width: 670px;
 	font-family: 'Jua', sans-serif;
 	font-size: 12px;
-}
-
-.post-index .posts {
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	table-layout: fixed; /* 2 */
 }
 
 .post h2 {
@@ -148,6 +138,7 @@ form .form-group {
 .post-index .posts {
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
+	table-layout: fixed;
 }
 
 .post .posts th,
@@ -177,7 +168,7 @@ form .form-group {
 	text-align: center;
 }
 
-.post .posts .author { /* 3 */
+.post .posts .author {
 	text-align: center;
 	width: 80px;
 }
@@ -205,7 +196,7 @@ form .form-group {
 	padding: 3px 12px;
 }
 
-.user-index ul:after { /* 1 */
+.user-index ul:after {
 	content: "";
 	display: block;
 	clear: both;

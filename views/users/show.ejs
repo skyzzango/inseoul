@@ -4,8 +4,8 @@
 
     <div class="buttons">
         <a class="btn btn-default" href="/users">Back</a>
-        <% if(isAuthenticated && currentUser.id == user.id){ %> <!-- 1 -->
-        <a class="btn btn-default" href="/users/<%= user.username %>/edit">Edit</a>
+        <% if(isAuthenticated && currentUser.id == user.id){ %>
+            <a class="btn btn-default" href="/users/<%= user.username %>/edit">Edit</a>
         <% } %>
     </div>
 

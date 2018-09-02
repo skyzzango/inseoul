@@ -1,36 +1,36 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt-nodejs"); // 1
+const bcrypt = require("bcrypt-nodejs");
 
-// schema // 1
+// schema
 const userSchema = mongoose.Schema({
-	username:{
-		type:String,
-		required:[true,"Username is required!"],
-		match:[/^.{4,12}$/,"Should be 4-12 characters!"],
-		trim:true,
-		unique:true
+	username: {
+		type    : String,
+		required: [true, "Username is required!"],
+		match   : [/^.{4,12}$/, "Should be 4-12 characters!"],
+		trim    : true,
+		unique  : true
 	},
-	password:{
-		type:String,
-		required:[true,"Password is required!"],
-		select:false
+	password: {
+		type    : String,
+		required: [true, "Password is required!"],
+		select  : false
 	},
-	name:{
-		type:String,
-		required:[true,"Name is required!"],
-		match:[/^.{4,12}$/,"Should be 4-12 characters!"],
-		trim:true
+	name    : {
+		type    : String,
+		required: [true, "Name is required!"],
+		match   : [/^.{4,12}$/, "Should be 4-12 characters!"],
+		trim    : true
 	},
-	email:{
-		type:String,
-		match:[/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/,"Should be a vaild email address!"],
-		trim:true
+	email   : {
+		type : String,
+		match: [/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "Should be a vaild email address!"],
+		trim : true
 	}
-},{
-	toObject:{virtuals:true}
+}, {
+	toObject: {virtuals: true}
 });
 
-// virtuals // 2
+// virtuals
 userSchema.virtual("passwordConfirmation")
 	.get(function () {
 		return this._passwordConfirmation;
@@ -97,18 +97,18 @@ userSchema.path("password").validate(function (v) {
 	}
 });
 
-// hash password // 3
+// hash password
 userSchema.pre("save", function (next) {
 	const user = this;
-	if (!user.isModified("password")) { // 3-1
+	if (!user.isModified("password")) {
 		return next();
 	} else {
-		user.password = bcrypt.hashSync(user.password); // 3-2
+		user.password = bcrypt.hashSync(user.password);
 		return next();
 	}
 });
 
-// model methods // 4
+// model methods
 userSchema.methods.authenticate = function (password) {
 	const user = this;
 	return bcrypt.compareSync(password, user.password);

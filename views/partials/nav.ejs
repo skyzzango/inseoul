@@ -23,12 +23,12 @@
                 </div>
             </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right" style="padding-right: 20px">
+        <ul class="nav navbar-nav navbar-right">
             <% if(isAuthenticated){ %>
-                <li style="padding-right: 20px"><a href="/users/<%= currentUser.username %>">My Account</a></li>
+                <li><a href="/users/<%= currentUser.username %>">My Account</a></li>
                 <li><a href="/logout">Logout</a></li>
             <% } else { %>
-                <li style="padding-right: 20px"><a href="/users/new">Sign Up</a></li>
+                <li><a href="/users/new">Sign Up</a></li>
                 <li><a href="/login">Login</a></li>
             <% } %>
         </ul>

@@ -1,6 +1,5 @@
 <% include partials/layout1.ejs %>
 <div class="container">
-
     <h1><%= message %></h1>
     <h2><%= error.status %></h2>
 
@@ -8,4 +7,17 @@
     <!--<%= error.stack %>-->
 
 </div>
+
+<script type="text/javascript">
+	const totalCount = 8;
+
+	function ChangeIt() {
+		const num = Math.ceil(Math.random() * totalCount);
+		document.body.background = '//media.disquscdn.com/errors/img/' + num + '.gif';
+		document.body.style.backgroundRepeat = "repeat";// Background repeat
+	}
+
+	window.onload = ChangeIt;
+</script>
+
 <% include partials/layout2.ejs %>
